@@ -11,7 +11,6 @@
             {{-- Products list --}}
             <div class="text-center pt-5 mb-4">
                 <h2>ADMINISTRACIÓN DE PRODUCTOS</h2>
-                
             </div>
             {{-- Add product button  --}}
             <div class="mb-4">
@@ -58,13 +57,14 @@
                                 href="{{ url('admin/products/'.$product->id.'/edit') }}">
                                 <span class="material-icons icon icon-warning">edit</span>
                             </a>
-                            <a href="{{ url('admin/products/'.$product->id) }}" data-toggle="tooltip" data-placement="top" title="Eliminar producto"
-                                data-container="body" onclick="event.preventDefault();
-                              document.getElementById('delete-form').submit();">
+                            <a href="{{ url('admin/products/'.$product->id) }}" data-toggle="tooltip"
+                                data-placement="top" title="Eliminar producto" data-container="body" onclick="event.preventDefault();
+                  document.getElementById('delete-form').submit();">
                                 <span class="material-icons icon icon-danger">delete</span>
                             </a>
                             {{-- Button delete action --}}
-                            <form id="delete-form" action="{{ url('admin/products/'.$product->id) }}" method="POST" style="display: none;">
+                            <form id="delete-form" action="{{ url('admin/products/'.$product->id) }}" method="POST"
+                                style="display: none;">
                                 @csrf
                                 {{ method_field('DELETE') }}
                             </form>

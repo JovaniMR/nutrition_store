@@ -20,8 +20,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 // Admin products
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('/admin/products','Admin\Products\ProductController');
+});
 
-Route::resource('/admin/products','Admin\Products\ProductController');
 
 Route::get('/product', function () {
     return view('product');

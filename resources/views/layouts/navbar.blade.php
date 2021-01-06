@@ -39,25 +39,45 @@
                         Mi cuenta
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @auth
+                       
+                       @if (auth()->check())
+                       @if (auth()->user()->admin == 0)
+                       <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                     <i class="material-icons">input</i> Cerrar Sesión
+                 </a>
 
-                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">
-                            <i class="material-icons">input</i> Cerrar Sesión
-                        </a>
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     @csrf
+                 </form>
+                       @endif
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                       
+                       @if (auth()->user()->admin)
+                       <a class="nav-link" href="{{ route('products.index') }}">
+                           <i class="material-icons">dashboard</i> Gestionar 
+                       </a>
+                       <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                           <i class="material-icons">input</i> Cerrar Sesión
+                       </a>
 
-                        @else
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                           @csrf
+                       </form>
+                       @endif
+                       @endif
+                        
+
+                        @if (!auth()->check())
                         <a class="nav-link" href="{{ route('login') }}">
                             <i class="material-icons">login</i> Ingresar
                         </a>
                         <a class="nav-link" href="{{ route('register') }}">
                             <i class="material-icons">person_add</i> Registrarse
-                        </a>
-                        @endauth
+                        </a>     
+                        @endif
+                       
                     </div>
                 </li>
             </ul>
