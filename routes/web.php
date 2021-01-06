@@ -13,16 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Admin products
+
+Route::resource('/admin/products','Admin\Products\ProductController');
+
 Route::get('/product', function () {
     return view('product');
 });
+
 Route::get('/micarrito', function () {
     return view('shopping-cart');
 })->name('shopping-cart');

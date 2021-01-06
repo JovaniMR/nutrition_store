@@ -13,8 +13,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="text-center mb-5 pb-5" colspan="5">
+                        <th class="text-center mb-5 " colspan="5">
                             <h1>Mi carrito</h1>
+                            <hr class="w-50">
                         </th>
                     </tr>
                 </thead>
@@ -41,13 +42,13 @@
                         <td class="align-middle">$1,220</td>
 
                         <td class="align-middle text-center">
-                            <span class="btn btn-info btn-sm">
+                            <a href="#" class="align-middle btn btn-round btn-info btn-fab btn-sm">
                                 <i class="material-icons">remove</i>
-                            </span>
+                            </a>
                             <span class="ml-3 mr-3">1</span>
-                            <span class="align-middle btn btn-info btn-sm">
+                            <a href="#" class="align-middle btn btn-round btn-info btn-fab btn-sm">
                                 <i class="material-icons">add</i>
-                            </span>
+                            </a>
                         </td>
                         <td class="align-middle text-center">$1,220</td>
                     </tr>
@@ -64,13 +65,13 @@
                         <td class="align-middle">$1,220</td>
 
                         <td class="align-middle text-center">
-                            <span class="btn btn-info btn-sm">
+                            <a href="#" class="align-middle btn btn-round btn-info btn-fab btn-sm">
                                 <i class="material-icons">remove</i>
-                            </span>
+                            </a>
                             <span class="ml-3 mr-3">1</span>
-                            <span class="align-middle btn btn-info btn-sm">
+                            <a href="#" class="align-middle btn btn-round btn-info btn-fab btn-sm">
                                 <i class="material-icons">add</i>
-                            </span>
+                            </a>
                         </td>
                         <td class="align-middle text-center">$1,220</td>
                     </tr>
@@ -100,19 +101,21 @@
                             <h3>$1,200</h3>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="5">
-                            @auth
-                            <a class="btn btn-success btn-block mt-5 mb-5" href="#">Continuar con mi compra</a>
-                            @else
-                            <a class="btn btn-success btn-block mt-5 mb-5" href="{{ route('login') }}">Continuar con mi compra</a>
-                            @endauth
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
             {{-- End shopping-cart products --}}
 
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    @auth
+                    <a class="btn btn-success btn-block mb-5" href="#">Continuar con mi compra <i class="material-icons">arrow_right_alt</i></a>
+                    @else
+                    <a class="btn btn-success btn-block mb-5" href="{{ route('login') }}">Continuar con mi
+                        compra <i class="material-icons">arrow_right_alt</i></a>
+                    @endauth
+                </div>
+            </div>
         </div>
     </div>
 </div>

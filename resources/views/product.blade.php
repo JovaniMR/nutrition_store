@@ -87,7 +87,7 @@
                                         </div>
                                         <div class="col-7 mt-4">
                                             <a href="#" class="btn btn-success btn-block"><i
-                                                    class="material-icons">shopping_cart</i> Agregar al carrito</a>
+                                                    class="material-icons">add_shopping_cart</i> Agregar al carrito</a>
                                         </div>
                                         <span class="text-muted mt-4 ">
                                                 <i class="material-icons icon icon-info" >info</i>                                          
@@ -119,7 +119,7 @@
                     <div class="container">                        
                         <div class="row text-center">
                             <div class="col">
-                                <h2>Productos recomendados</h2>
+                                <h2 class="title">Productos recomendados</h2>
                                 <hr class="w-50">
                                 <!-- Carousel Card -->
                                 <div class=" card-raised card-carousel">
