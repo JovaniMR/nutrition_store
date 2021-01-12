@@ -26,18 +26,16 @@
                                                         <div class="carousel-item active">
                                                             <img class="d-block w-100"
                                                                 src="{{ asset('/img/proteina.jpg') }}"
-                                                                alt="First slide">
-                                                        </div>
-                                                        <div class="carousel-item">
+                                                                alt="slide">
+                                                        </div>  
+                                                        @foreach ( $images as $image )
+                                                        <div class="carousel-item ">
                                                             <img class="d-block w-100"
-                                                                src="{{ asset('/img/proteina.jpg') }}"
-                                                                alt="Second slide">
-                                                        </div>
-                                                        <div class="carousel-item">
-                                                            <img class="d-block w-100"
-                                                                src="{{ asset('/img/proteina.jpg') }}"
-                                                                alt="Third slide">
-                                                        </div>
+                                                                src="{{ asset($image->image) }}"
+                                                                alt="slide">
+                                                        </div>     
+                                                        @endforeach
+     
                                                     </div>
                                                     <a class="carousel-control-prev" href="#carouselExampleIndicators"
                                                         role="button" data-slide="prev">
@@ -61,15 +59,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body ">
-                                    <h2 class="card-title mb-4">Whey protein isolate </h2>
-                                    <p class="card-text text-justify mb-4">This is a wider card with supporting text below as
-                                        a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text ">Contenido: 5 lbs </p>
-                                    <p class="card-text mb-4">Sabor: Chocolate </p>
+                                    <h2 class="card-title mb-4">{{ $product->name }}</h2>
+                                    <p class="card-text text-justify mb-4">{{$product->long_description}}</p>
+                                    <p class="card-text ">Contenido: {{ $product->number_content }} {{ $product->weight_unit_content }} </p>
+                                    <p class="card-text mb-4">Sabor: {{ $product->flavor }} </p>
                                     <p class="card-text ">
                                         <strong class="text-danger" style="font-size:2.3rem">$
-                                            1,200</strong> 
+                                            {{ $product->price }}</strong> 
                                             <span class="text-muted">IVA incluido.</span>
                                     </p>
                                     <div class="row mt-5">

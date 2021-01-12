@@ -33,7 +33,7 @@
                     @foreach ($products as $product )
                     <tr>
                         <th class="text-center align-middle" scope="row">
-                            <img src="{{ asset('/img/proteina.jpg') }}" class="img-fluid" alt=""
+                            <img src="{{ asset($product->featured_image_url) }}" class="img-fluid rounded" alt=""
                                 style="max-width: 100px">
                         </th>
                         <td class="align-middle">
@@ -56,6 +56,10 @@
                             <a data-toggle="tooltip" data-placement="top" title="Editar producto" data-container="body"
                                 href="{{ url('admin/products/'.$product->id.'/edit') }}">
                                 <span class="material-icons icon icon-warning">edit</span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Gestionar imágenes" data-container="body"
+                                href="{{ url('admin/products/'.$product->id.'/images') }}">
+                                <span class="material-icons icon icon-success">image</span>
                             </a>
                             <a href="{{ url('admin/products/'.$product->id) }}" data-toggle="tooltip"
                                 data-placement="top" title="Eliminar producto" data-container="body" onclick="event.preventDefault();

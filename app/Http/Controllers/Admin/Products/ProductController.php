@@ -17,7 +17,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
-
         return view('admin.products.index',compact('products'));
     }
 
@@ -43,12 +42,10 @@ class ProductController extends Controller
 
         $messages = [
             'name.required' => 'El nombre del producto es obligatorio',
-            'name.alpha' => 'El nombre del producto debe ser alfabetico',
             'description.required' => 'La descripción es obligatoria',
             'long_description.required' => 'La descripción larga es obligatoria',
-            'long_description.max' => 'La descripción larga debe tener al menos 250 caracteres',
             'number_content.required' => 'La cantidad es obligatoria',
-            'number_content.between' => 'La cantidad debe ser más de 0',
+            'number_content.between' => 'La cantidad debe ser entre 0 y 50',
             'weight_unit_content.required' => 'La medida de peso es obligatoria',
             'weight_unit_content.alpha' => 'La medida de peso deben de ser caracteres',
             'flavor.required' => 'El sabor es obligatorio',
@@ -58,9 +55,9 @@ class ProductController extends Controller
         ];
 
         $rules = [
-           'name' => 'required|alpha',
+           'name' => 'required',
            'description' => 'required',
-           'long_description' => 'required|max:250',
+           'long_description' => 'required',
            'number_content' => 'required|numeric|between:0,50',
            'weight_unit_content' => 'required|alpha',
            'flavor' => 'required|alpha',
@@ -95,7 +92,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $images = $product->images;
+        return view('admin.products.show',compact('product','images'));
     }
 
     /**

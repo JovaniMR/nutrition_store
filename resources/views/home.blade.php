@@ -20,7 +20,7 @@
 <div class="main main-raised mb-5">
     <div class="container">
         <div class="section text-center">
-            <img src="{{ asset('/img/BANNER.jpg') }}" class="img-fluid" alt="">
+            <img src="{{ asset('/img/BANNER.jpg') }}" class="img-fluid" alt="banner">
             {{-- Products --}}
             <div class="features mb-5">
                 <div class="row">
@@ -28,14 +28,14 @@
                     <div class="col-md-3 mt-5">
                         <div class=" mr-5" style="width: 16rem;">
                             {{-- <img src="https://via.placeholder.com/200" class="card-img-top" style="height: 200px" alt="..."> --}}
-                            <img src="{{ asset('/img/proteina.jpg') }}" class="card-img-top" style="height: 200px; " alt="{{ $product->name }}">
+                            <img src="{{ asset($product->featured_image_url) }}" class="card-img-top" style="height: 200px; " alt="{{ $product->name }}">
                             <div class="card-body ">
                               <p class="card-title text" style="font-size:1rem">{{ $product->name }}</p>
                               {{-- <p class="card-text text-justify">Some quick example text to build on the card title </p> --}}
                               <p class="card-text ">Contenido: {{ $product->number_content }} {{ $product->weight_unit_content }} </p>
                               <p class="card-text ">Sabor: {{ $product->flavor }} </p>
                               <p class="card-text"><strong class="text-danger" style="font-size:1.3rem">${{ $product->price }}</strong> </p>
-                              <a href="#" class="btn btn-success btn-sm btn-block">Ver Producto</a>
+                              <a href="{{ url('products/'.$product->id) }}" class="btn btn-success btn-sm btn-block">Ver Producto</a>
                             </div>
                         </div>
                     </div>
