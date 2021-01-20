@@ -32,7 +32,7 @@
 
 <body>
   <div id="app" @yield('body-class')>
-    
+
     @include('layouts/navbar')
 
     @yield('content')

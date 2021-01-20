@@ -25,7 +25,7 @@
             <div class="features mb-5">
                 <div class="row">
                     @foreach ($products as $product )
-                    <div class="col-md-3 mt-5">
+                    <div class="col-md-3 mt-5 transition">
                         <div class=" mr-5" style="width: 16rem;">
                             {{-- <img src="https://via.placeholder.com/200" class="card-img-top" style="height: 200px" alt="..."> --}}
                             <img src="{{ asset($product->featured_image_url) }}" class="card-img-top" style="height: 200px; " alt="{{ $product->name }}">

@@ -26,6 +26,7 @@
                         <th scope="col">Producto</th>
                         <th class="text-center" scope="col">Descripción</th>
                         <th scope="col">Precio</th>
+                        <th class="text-center" scope="col">Cant. en inventario</th>
                         <th class="text-center" scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -44,7 +45,8 @@
                         <td class="align-middle text-justify" style="max-width:350px">
                             <p>{{ $product->long_description }}</p>
                         </td>
-                        <td class="align-middle">${{ $product->price }}</td>
+                        <td class="align-middle">$ {{ $product->price }}</td>
+                        <td class="align-middle text-center">{{ $product->stock }}</td>
 
                         {{-- Actions --}}
                         <td class="align-middle text-center">
@@ -57,20 +59,18 @@
                                 href="{{ url('admin/products/'.$product->id.'/edit') }}">
                                 <span class="material-icons icon icon-warning">edit</span>
                             </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Gestionar imágenes" data-container="body"
-                                href="{{ url('admin/products/'.$product->id.'/images') }}">
+                            <a data-toggle="tooltip" data-placement="top" title="Gestionar imágenes"
+                                data-container="body" href="{{ url('admin/products/'.$product->id.'/images') }}">
                                 <span class="material-icons icon icon-success">image</span>
                             </a>
-                            <a href="{{ url('admin/products/'.$product->id) }}" data-toggle="tooltip"
-                                data-placement="top" title="Eliminar producto" data-container="body" onclick="event.preventDefault();
-                  document.getElementById('delete-form').submit();">
-                                <span class="material-icons icon icon-danger">delete</span>
-                            </a>
                             {{-- Button delete action --}}
-                            <form id="delete-form" action="{{ url('admin/products/'.$product->id) }}" method="POST"
-                                style="display: none;">
+                            <form id="delete-form" class="d-inline" action="{{ url('admin/products/'.$product->id) }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
+
+                                <button data-toggle="tooltip" data-placement="top" title="Eliminar producto"
+                                    data-container="body" style="border:none; background:none" type="submit"><span
+                                        class="material-icons icon icon-danger">delete</span></button>
                             </form>
                         </td>
                     </tr>

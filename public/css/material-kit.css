@@ -25,6 +25,7 @@
   font-size: .875rem;
 }
 
+
 *,
 *::before,
 *::after {
@@ -40,7 +41,6 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   --primary-color:#21C064;
   --primary-color-show: #06CE5A;
-  --primary-color-hover: ;
 }
 
 @-ms-viewport {
@@ -3497,8 +3497,8 @@ fieldset:disabled a.btn {
 .btn-link:hover {
   color: #641971;
   text-decoration: underline;
-  background-color: transparent;
-  border-color: transparent;
+  /* background-color: transparent; */
+  /* border-color: transparent; */
 }
 
 .btn-link:focus,
@@ -9655,7 +9655,7 @@ button:focus {
 .btn.btn-primary.btn-link:hover,
 .btn.btn-primary.btn-link:focus,
 .btn.btn-primary.btn-link:active {
-  background-color: transparent;
+  /* background-color: transparent; */
   color: var(--primary-color);
 }
 
@@ -15998,7 +15998,7 @@ h2.title {
 .dropdown-menu a:active {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
   background-color: #9c27b0;
-  color: #fff !important;
+  color: var(--primary-color-show) !important;
 }
 
 .dropdown-toggle.bmd-btn-icon::after,

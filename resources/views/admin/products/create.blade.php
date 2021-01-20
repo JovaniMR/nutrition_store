@@ -45,7 +45,7 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-3">
-                            <input type="number" class="form-control" placeholder="Cantidad" name="number_content"
+                            <input type="number" class="form-control" placeholder="Contenido" name="number_content"
                                 value="{{ old('number_content') }}">
                         </div>
                         <div class="col-4">
@@ -56,13 +56,17 @@
                         </div>
                         <div class="col-5">
                             <input type="text" class="form-control" placeholder="Sabor" name="flavor"
-                                value="{{ old('price') }}">
+                                value="{{ old('flavor') }}">
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-5">
                             <input type="text" class="form-control" placeholder="Precio" name="price"
                                 aria-describedat="help1" value="{{ old('price') }}">
+                        </div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" placeholder="Cantidad en inventario" name="stock"
+                                aria-describedat="help1" value="{{ old('stock') }}">
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('/products/{id}','Admin\Products\ProductController@show');
 
+// Shopping cart
 
-Route::get('/micarrito', function () {
-    return view('shopping-cart');
-})->name('shopping-cart');
+Route::post('/cart-add','ShoppingCart@add')->name('cart.add');
+Route::post('/cart-removeOne/{product_id}','ShoppingCart@removeOne')->name('cart.removeOne');
+Route::post('/cart-addOne/{product_id}','ShoppingCart@addOne')->name('cart.addOne');
+Route::delete('/cart-delete/{product_id}','ShoppingCart@delete')->name('cart.delete');
+Route::get('/cart','ShoppingCart@index')->name('cart.index');

@@ -14,6 +14,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'weight_unit_content' => $faker->randomLetter,
         'flavor' => $faker->word,
         'price' => $faker->randomFloat(2,200,3000),
+        'stock' => $faker->numberBetween(20,22),
         'category_id'=>$faker->numberBetween(1,2)
     ];
 });

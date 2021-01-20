@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('weight_unit_content');
             $table->string('flavor');
             $table->float('price');
+            $table->integer('stock');
             // foreign key
              $table->unsignedBigInteger('category_id');
              $table->foreign('category_id')->references('id')->on('categories');

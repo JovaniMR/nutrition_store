@@ -64,6 +64,10 @@
                                     aria-describedat="help1" value="{{ old('price', $product->price) }}">
                                 <small id="help1">Ejemplo: 1400.00, 1550.50</small>
                             </div>
+                            <div class="col-5">
+                                <input type="number" class="form-control" placeholder="Cantidad en inventario" name="stock"
+                                    aria-describedat="help1" value="{{ old('stock', $product->stock) }}">
+                            </div>
                         </div>
                     </div>
                 </div>

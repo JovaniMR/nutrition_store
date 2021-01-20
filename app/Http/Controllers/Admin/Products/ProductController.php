@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Products;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Collection;
 use App\Product;
 use SweetAlert;
 
@@ -47,11 +48,13 @@ class ProductController extends Controller
             'number_content.required' => 'La cantidad es obligatoria',
             'number_content.between' => 'La cantidad debe ser entre 0 y 50',
             'weight_unit_content.required' => 'La medida de peso es obligatoria',
-            'weight_unit_content.alpha' => 'La medida de peso deben de ser caracteres',
+            'weight_unit_content.alpha' => 'La medida de peso deben ser caracteres',
             'flavor.required' => 'El sabor es obligatorio',
             'flavor.alpha' => 'El sabor debe de ser caracteres',
             'price.required' => 'El precio es obligatorio',
-            'price.numeric' => 'El precio debe de ser numerico'
+            'price.numeric' => 'El precio debe de ser numerico',
+            'stock.required' => 'La cantidad en inventario es obligatoria',
+            'stock.numeric' => 'La cantidad en inventario debe ser numerico'
         ];
 
         $rules = [
@@ -61,7 +64,8 @@ class ProductController extends Controller
            'number_content' => 'required|numeric|between:0,50',
            'weight_unit_content' => 'required|alpha',
            'flavor' => 'required|alpha',
-           'price' => 'required|numeric|between:0,10000'
+           'price' => 'required|numeric|between:0,10000',
+           'stock' => 'required|numeric|min:1'
         ];
 
         $this->validate($request,$rules,$messages);
@@ -76,6 +80,7 @@ class ProductController extends Controller
         $product->weight_unit_content = $request->weight_unit_content;
         $product->flavor = $request->flavor;
         $product->price = $request->price;
+        $product->stock = $request->stock;
         $product->category_id = 1;
 
         $product->save();
@@ -93,8 +98,24 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $images = $product->images;
-        return view('admin.products.show',compact('product','images'));
+        $images = $product->images()->where('featured',false)->get();
+        $imageFeatured = $product->featured_image_url;
+
+        //Products recomended
+        $productsRecomended = product::limit(6)->get();
+        
+        $productsRecomendedOne = Collect();
+        $productsRecomendedTwo = Collect();
+
+            foreach($productsRecomended as $productRecomended){
+              if($productRecomended->id % 2 ==0){
+                $productsRecomendedOne->push($productRecomended);
+              }else{
+                $productsRecomendedTwo->push($productRecomended);
+              }
+            }
+
+        return view('admin.products.show',compact('product','images','imageFeatured','productsRecomendedOne','productsRecomendedTwo'));
     }
 
     /**
@@ -136,7 +157,9 @@ class ProductController extends Controller
             'flavor.required' => 'El sabor es obligatorio',
             'flavor.alpha' => 'El sabor debe de ser caracteres',
             'price.required' => 'El precio es obligatorio',
-            'price.numeric' => 'El precio debe de ser numerico'
+            'price.numeric' => 'El precio debe de ser numerico',
+            'stock.required' => 'La cantidad en inventario es obligatoria',
+            'stock.numeric' => 'La cantidad en inventario debe ser numerico'
         ];
 
         $rules = [
@@ -146,7 +169,8 @@ class ProductController extends Controller
            'number_content' => 'required|numeric|between:0,50',
            'weight_unit_content' => 'required|alpha',
            'flavor' => 'required|alpha',
-           'price' => 'required|numeric|between:0,10000'
+           'price' => 'required|numeric|between:0,10000',
+           'stock' => 'required|numeric|min:1'
         ];
 
         $this->validate($request,$rules,$messages);
@@ -161,6 +185,7 @@ class ProductController extends Controller
         $product->weight_unit_content = $request->weight_unit_content;
         $product->flavor = $request->flavor;
         $product->price = $request->price;
+        $product->stock = $request->stock;
         $product->category_id = 1;
 
         $product->save();

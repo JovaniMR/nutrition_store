@@ -27,11 +27,15 @@
                         <i class="material-icons">store</i> Productos
                     </a>
                 </li>
+                @auth
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('shopping-cart') }}">
+                    <a class="nav-link" href="{{ route('cart.index') }}">
                         <i class="material-icons">shopping_cart</i> Mi carrito
+                        <span
+                            class="badge badge-pill badge-success">{{ Cart::session(auth()->user()->id)->getContent()->count()}}</span>
                     </a>
                 </li>
+                @endauth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -39,35 +43,34 @@
                         Mi cuenta
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                       
-                       @if (auth()->check())
-                       @if (auth()->user()->admin == 0)
-                       <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+
+                        @if (auth()->check())
+                        @if (auth()->user()->admin == 0)
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
-                     <i class="material-icons">input</i> Cerrar Sesión
-                 </a>
+                            <i class="material-icons">input</i> Cerrar Sesión
+                        </a>
 
-                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                     @csrf
-                 </form>
-                       @endif
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        @endif
 
-                       
-                       @if (auth()->user()->admin)
-                       <a class="nav-link" href="{{ route('products.index') }}">
-                           <i class="material-icons">dashboard</i> Gestionar 
-                       </a>
-                       <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        @if (auth()->user()->admin)
+                        <a class="nav-link" href="{{ route('products.index') }}">
+                            <i class="material-icons">dashboard</i> Gestionar
+                        </a>
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
-                           <i class="material-icons">input</i> Cerrar Sesión
-                       </a>
+                            <i class="material-icons">input</i> Cerrar Sesión
+                        </a>
 
-                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                           @csrf
-                       </form>
-                       @endif
-                       @endif
-                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        @endif
+                        @endif
+
 
                         @if (!auth()->check())
                         <a class="nav-link" href="{{ route('login') }}">
@@ -75,9 +78,9 @@
                         </a>
                         <a class="nav-link" href="{{ route('register') }}">
                             <i class="material-icons">person_add</i> Registrarse
-                        </a>     
+                        </a>
                         @endif
-                       
+
                     </div>
                 </li>
             </ul>
