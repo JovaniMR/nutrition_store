@@ -25,7 +25,7 @@
                         <th scope="col"></th>
                         <th scope="col">Producto</th>
                         <th class="text-center" scope="col">Descripción</th>
-                        <th scope="col">Precio</th>
+                        <th class="text-center" scope="col">Precio</th>
                         <th class="text-center" scope="col">Cant. en inventario</th>
                         <th class="text-center" scope="col">Acciones</th>
                     </tr>
@@ -45,7 +45,7 @@
                         <td class="align-middle text-justify" style="max-width:350px">
                             <p>{{ $product->long_description }}</p>
                         </td>
-                        <td class="align-middle">$ {{ $product->price }}</td>
+                        <td class="align-middle text-center">$ {{ $product->price }}</td>
                         <td class="align-middle text-center">{{ $product->stock }}</td>
 
                         {{-- Actions --}}
@@ -70,7 +70,7 @@
 
                                 <button data-toggle="tooltip" data-placement="top" title="Eliminar producto"
                                     data-container="body" style="border:none; background:none" type="submit"><span
-                                        class="material-icons icon icon-danger">delete</span></button>
+                                        class="material-icons icon icon-danger" style="vertical-align: middle">delete</span></button>
                             </form>
                         </td>
                     </tr>

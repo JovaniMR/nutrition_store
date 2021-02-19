@@ -12,9 +12,10 @@
             </button>
         </div>
         <div class="collapse navbar-collapse">
-            <form class="form-inline ml-auto">
+            <form action="{{ url('/search') }}" method="GET" class="form-inline ml-auto">
+                @csrf
                 <div class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Buscar">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar producto" style="color: grey">
                 </div>
                 <button type="submit" class="btn btn-success btn-just-icon btn-round">
                     <i class="material-icons">search</i>
@@ -27,7 +28,8 @@
                         <i class="material-icons">store</i> Productos
                     </a>
                 </li>
-                @auth
+                @if (auth()->check())
+                @if (auth()->user()->admin == 0)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cart.index') }}">
                         <i class="material-icons">shopping_cart</i> Mi carrito
@@ -35,7 +37,13 @@
                             class="badge badge-pill badge-success">{{ Cart::session(auth()->user()->id)->getContent()->count()}}</span>
                     </a>
                 </li>
-                @endauth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('order.index') }}">
+                        <i class="material-icons">shopping_bag</i> Pedidos
+                    </a>
+                </li>
+                @endif
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -59,6 +67,9 @@
                         @if (auth()->user()->admin)
                         <a class="nav-link" href="{{ route('products.index') }}">
                             <i class="material-icons">dashboard</i> Gestionar
+                        </a>
+                        <a class="nav-link" href="{{ route('order.index') }}">
+                            <i class="material-icons">shopping_bag</i> Pedidos
                         </a>
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">

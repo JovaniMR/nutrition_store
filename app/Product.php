@@ -28,4 +28,9 @@ class Product extends Model
 
         return '/img/products/default.png';
     }
+
+    //Orders
+    public function orders(){
+        return $this->belongsToMany(Order::class)->withPivot('quantity')->withTimestamps();
+    }
 }

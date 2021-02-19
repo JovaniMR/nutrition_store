@@ -12,7 +12,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="text-center mb-5 " colspan="5">
+                        <th class="text-center mb-5 " colspan="6">
                             <h1>Mi carrito</h1>
                             <hr class="w-50">
                         </th>
@@ -30,7 +30,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($products as $product)
                     <tr>
                         <th class="text-center" scope="row">
@@ -104,21 +103,40 @@
                 </tbody>
                 @endif
             </table>
+            {{-- Error message payment --}}
+            @if (session('status'))
+            <div class="alert alert-danger">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    {{ session('status') }}
+                </div>
+            </div>    
+            @endif
             {{-- End shopping-cart products --}}
-
+            <div class="row justify-content-center pb-4">
+                <div class="col-8 text-center">
+                    <img class="img-fluid text-center" style="width: 110px" src="{{ asset('/img/secure_pay.jpg ') }}"
+                        alt="secure pay">
+                    <img class="img-fluid" src="{{ asset('/img/paypal.png ') }}" alt="paypal">
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-7">
                     @auth
                     @if (Cart::getContent()->count())
-                    <a class="btn btn-success btn-block mb-5" href="#">Continuar con mi compra <i
-                            class="material-icons">arrow_right_alt</i></a>
+                    <button class="btn btn-success btn-block mb-5" data-toggle="modal"
+                        data-target="#payment">Continuar con mi compra </button>
                     @else
-                    <a class="btn btn-success btn-block mb-5 disabled" href="#">Continuar con mi compra <i
-                            class="material-icons">arrow_right_alt</i></a>
+                    <a class="btn btn-success btn-block mb-5 disabled" href="#">Continuar con mi compra </a>
                     @endif
                     @else
                     <a class="btn btn-success btn-block mb-5" href="{{ route('login') }}">Continuar con mi
-                        compra <i class="material-icons">arrow_right_alt</i></a>
+                        compra </a>
                     @endauth
                 </div>
             </div>
@@ -126,3 +144,7 @@
     </div>
 </div>
 @endsection
+
+{{-- Modal order and payment --}}
+
+@include('payment')

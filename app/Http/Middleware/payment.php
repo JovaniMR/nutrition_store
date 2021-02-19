@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Cart;
 
-class admin
+class payment
 {
     /**
      * Handle an incoming request.
@@ -15,10 +16,11 @@ class admin
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->admin){
+        $userId = auth()->user()->id;
+        if(Cart::session($userId)->getContent()->count() == 0){
             return redirect('/');
         }
-
+        
         return $next($request);
     }
 }

@@ -5,7 +5,7 @@
 <div class="page-header header-filter"
     style="background-image: url('/img/gym.jpg'); background-size: cover; background-position: top center;">
     <div class="container">
-        <div class="row">
+        <div class="row pt-5">
             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                 <div class="card card-login">
                     <form class="form" method="POST" action="{{ route('register') }}">
