@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin extends Middleware
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Admin extends Middleware
         if(!auth()->user()->admin){
             return redirect('/');
         }
-
+        
         return $next($request);
     }
 }
