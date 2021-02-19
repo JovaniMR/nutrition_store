@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Cart;
 
-class payment extends Middleware
+class Payment extends Middleware
 {
     /**
      * Handle an incoming request.
