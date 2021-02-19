@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Cart;
 
-class Payment extends Middleware
+class Pay
 {
     /**
      * Handle an incoming request.
@@ -20,7 +20,7 @@ class Payment extends Middleware
         if(Cart::session($userId)->getContent()->count() == 0){
             return redirect('/');
         }
-        
+
         return $next($request);
     }
 }
