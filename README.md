@@ -3,7 +3,7 @@
 Tienda online de suplementos alimenticos
 
 ### Tecnologías
-- HTML, CSS, Bootstrap
+- HTML, CSS, Bootstrap, Javascript
 - Vue js
 - Laravel
 - API de PayPal
